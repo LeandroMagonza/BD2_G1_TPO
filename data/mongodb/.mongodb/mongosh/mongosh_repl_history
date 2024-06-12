@@ -1,0 +1,3 @@
+db.Carrito_de_Compras.find().pretty()
+show collections
+use tienda_online
