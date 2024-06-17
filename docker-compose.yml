@@ -27,3 +27,13 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - mongo
+      - redis
