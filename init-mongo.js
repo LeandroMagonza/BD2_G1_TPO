@@ -17,6 +17,7 @@ db.Carrito_de_Compras.insert({
 
 // Crear colección y documento para Producto
 db.createCollection('Producto');
+<<<<<<< Updated upstream
 db.Producto.insert({
     _id: ObjectId(),
     Nombre: "Producto1",
@@ -45,3 +46,25 @@ db.Catalogo_de_Productos.insert({
         { Cambio: "Imagen", Valor_Anterior: "foto1.jpg", Valor_Nuevo: "foto3.jpg", Operador: "Admin", Fecha: new Date("2023-01-02") }
     ]
 });
+=======
+db.Producto.insertMany([
+    {
+        _id: ObjectId("1"),
+        Nombre: "Producto A",
+        Descripción: "Descripción del producto A",
+        Fotos: ["fotoA1.jpg", "fotoA2.jpg"],
+        Comentarios: ["Comentario A1", "Comentario A2"],
+        Videos: ["videoA1.mp4"],
+        Precio: 50.0
+    },
+    {
+        _id: ObjectId("2"),
+        Nombre: "Producto B",
+        Descripción: "Descripción del producto B",
+        Fotos: ["fotoB1.jpg", "fotoB2.jpg"],
+        Comentarios: ["Comentario B1", "Comentario B2"],
+        Videos: ["videoB1.mp4"],
+        Precio: 30.0
+    }
+]);
+>>>>>>> Stashed changes

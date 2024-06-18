@@ -8,6 +8,7 @@ Este proyecto implementa una aplicación de gestión de pedidos para una tienda 
 - [Prerrequisitos](#prerrequisitos)
 - [Instalación](#instalación)
 - [Uso](#uso)
+- [Endpoints](#endpoints)
 - [Contribuir](#contribuir)
 - [Licencia](#licencia)
 
@@ -15,7 +16,7 @@ Este proyecto implementa una aplicación de gestión de pedidos para una tienda 
 
 La aplicación gestiona la creación de pedidos, carritos de compras, facturación y pagos. Utiliza:
 - **PostgreSQL** para gestionar la información de usuarios, pedidos, facturas y pagos.
-- **MongoDB** para gestionar los carritos de compras y catálogos de productos.
+- **MongoDB** para gestionar los carritos de compras.
 - **Redis** para gestionar las sesiones de usuario.
 
 ## Prerrequisitos
@@ -37,45 +38,90 @@ Antes de comenzar, asegúrate de tener Docker y Docker Compose instalados en tu 
     - `docker-compose.yml`
     - `init-postgres.sql`
     - `init-mongo.js`
+    - `init-redis.sh`
+
+3. Asegúrate de que el script `init-redis.sh` tenga permisos de ejecución:
+    ```bash
+    chmod +x init-redis.sh
+    ```
 
 ## Uso
 
-1. **Levanta los contenedores**:
+1. Levanta los contenedores Docker:
     ```bash
     docker-compose up
     ```
 
    Este comando descargará las imágenes de Docker para PostgreSQL, MongoDB y Redis, creará y configurará los contenedores, y ejecutará los scripts de inicialización para configurar las bases de datos con las estructuras y datos requeridos.
 
-2. **Verifica la conexión**:
-   - **PostgreSQL**: Usa pgAdmin para conectarte a PostgreSQL. Configura un nuevo servidor en pgAdmin con los siguientes detalles:
-     - **Host name/address:** `localhost`
-     - **Port:** `5432`
-     - **Username:** `user`
-     - **Password:** `password`
+2. (Opcional) Verifica que los datos de prueba se hayan cargado correctamente:
 
-   - **MongoDB**: Usa `mongosh` para conectarte a MongoDB:
+   - **PostgreSQL**:
+     Usa `pgAdmin` o `psql` para conectarte y verificar los datos.
+   
+   - **MongoDB**:
+     Usa `mongosh` para conectarte y verificar los datos:
      ```bash
      winpty docker exec -it mongo mongosh
-     ```
-     Una vez dentro del shell de MongoDB, verifica las colecciones:
-     ```javascript
      use tienda_online
      show collections
      db.Carrito_de_Compras.find().pretty()
      db.Producto.find().pretty()
-     db.Catalogo_de_Productos.find().pretty()
      ```
 
-   - **Redis**: Usa `redis-cli` para conectarte a Redis:
+   - **Redis**:
+     Usa `redis-cli` para conectarte y verificar los datos:
      ```bash
      winpty docker exec -it redis redis-cli
+     GET user:12345
+     HGETALL session:12345
      ```
-     Verifica que Redis esté funcionando:
-     ```bash
-     set test_key "Redis is running"
-     get test_key
-     ```
+
+## Endpoints
+
+La API expone los siguientes endpoints:
+
+### Usuarios (PostgreSQL)
+- **GET** `/usuarios`
+- **POST** `/usuarios`
+- **PUT** `/usuarios/:id`
+- **DELETE** `/usuarios/:id`
+- **POST** `/usuarios/login`
+
+### Pedidos (PostgreSQL)
+- **GET** `/pedidos`
+- **POST** `/pedidos`
+- **PUT** `/pedidos/:id`
+- **DELETE** `/pedidos/:id`
+
+### Facturas (PostgreSQL)
+- **GET** `/facturas`
+- **POST** `/facturas`
+- **PUT** `/facturas/:id`
+- **DELETE** `/facturas/:id`
+
+### Pagos (PostgreSQL)
+- **GET** `/pagos`
+- **POST** `/pagos`
+- **PUT** `/pagos/:id`
+- **DELETE** `/pagos/:id`
+
+### Carritos (MongoDB)
+- **GET** `/carritos`
+- **POST** `/carritos`
+- **PUT** `/carritos/:id`
+- **DELETE** `/carritos/:id`
+
+### Productos (MongoDB)
+- **GET** `/productos`
+- **POST** `/productos`
+- **PUT** `/productos/:id`
+- **DELETE** `/productos/:id`
+
+### Sesiones (Redis)
+- **GET** `/sesiones/:id`
+- **PUT** `/sesiones/:id`
+- **DELETE** `/sesiones/:id`
 
 ## Contribuir
 
