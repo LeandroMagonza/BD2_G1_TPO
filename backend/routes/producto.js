@@ -13,6 +13,18 @@ router.post('/', async (req, res) => {
   res.json(producto);
 });
 
-// Añade PUT y DELETE según sea necesario
+// PUT (Update) Producto
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;
+    const producto = await Producto.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(producto);
+  });
+  
+  // DELETE Producto
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    await Producto.findByIdAndDelete(id);
+    res.json({ message: 'Producto eliminado' });
+});
 
 module.exports = router;

@@ -13,6 +13,18 @@ router.post('/', async (req, res) => {
   res.json(carrito);
 });
 
-// Añade PUT y DELETE según sea necesario
+// PUT (Update) Carrito
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;
+    const carrito = await Carrito.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(carrito);
+  });
+  
+// DELETE Carrito
+router.delete('/:id', async (req, res) => {
+const { id } = req.params;
+await Carrito.findByIdAndDelete(id);
+res.json({ message: 'Carrito eliminado' });
+});
 
 module.exports = router;

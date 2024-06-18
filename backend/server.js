@@ -13,6 +13,7 @@ app.use('/pagos', require('./routes/pago'));
 app.use('/carritos', require('./routes/carrito'));
 app.use('/productos', require('./routes/producto'));
 app.use('/catalogos', require('./routes/catalogo'));
+app.use('/sesiones', require('./routes/sesion'));
 
 // Iniciar el servidor
 const PORT = 3000;

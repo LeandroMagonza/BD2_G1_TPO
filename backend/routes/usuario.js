@@ -16,6 +16,22 @@ router.post('/', async (req, res) => {
   res.json(result.rows[0]);
 });
 
-// Añade PUT y DELETE según sea necesario
+// PUT (Update) Usuario
+router.put('/:id', async (req, res) => {
+    const { id } = req.params;
+    const { Nombre, Dirección, Documento_de_identidad, Tiempo_de_conexión, Categoría_de_usuario } = req.body;
+    const result = await pool.query(
+      'UPDATE Usuario SET Nombre = $1, Dirección = $2, Documento_de_identidad = $3, Tiempo_de_conexión = $4, Categoría_de_usuario = $5 WHERE ID_usuario = $6 RETURNING *',
+      [Nombre, Dirección, Documento_de_identidad, Tiempo_de_conexión, Categoría_de_usuario, id]
+    );
+    res.json(result.rows[0]);
+  });
+  
+  // DELETE Usuario
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    await pool.query('DELETE FROM Usuario WHERE ID_usuario = $1', [id]);
+    res.json({ message: 'Usuario eliminado' });
+  });
 
 module.exports = router;
