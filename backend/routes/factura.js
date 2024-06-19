@@ -7,14 +7,6 @@ router.get('/', async (req, res) => {
   res.json(result.rows);
 });
 
-router.post('/', async (req, res) => {
-  const { ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago } = req.body;
-  const result = await pool.query(
-    'INSERT INTO Factura (ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-    [ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago]
-  );
-  res.json(result.rows[0]);
-});
 
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
@@ -31,6 +23,16 @@ router.delete('/:id', async (req, res) => {
 const { id } = req.params;
 await pool.query('DELETE FROM Factura WHERE ID_factura = $1', [id]);
 res.json({ message: 'Factura eliminada' });
+});
+
+// POST Factura
+router.post('/', async (req, res) => {
+  const { ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago } = req.body;
+  const result = await pool.query(
+    'INSERT INTO Factura (ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+    [ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago]
+  );
+  res.json(result.rows[0]);
 });
 
 module.exports = router;

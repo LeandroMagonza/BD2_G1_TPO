@@ -1,65 +1,36 @@
-// Inicializar MongoDB con las colecciones y documentos requeridos
+db.createUser({
+    user: 'admin',
+    pwd: 'password',
+    roles: [
+      {
+        role: 'readWrite',
+        db: 'tiendaonline'
+      }
+    ]
+  });
+  
+db = db.getSiblingDB('tiendaonline');
 
-// Conectar a la base de datos
-db = db.getSiblingDB('tienda_online');
+// Crear colección de productos
+db.createCollection('productos', { capped: false });
 
-// Crear colección y documento para Carrito de Compras
-db.createCollection('Carrito_de_Compras');
-db.Carrito_de_Compras.insert({
-    _id: ObjectId(),
-    ID_Usuario: "12345",
-    Productos: [
-        { ID_Producto: "1", Cantidad: 2, Detalles: "Producto A" },
-        { ID_Producto: "2", Cantidad: 1, Detalles: "Producto B" }
-    ],
-    Estado: "Pendiente"
-});
-
-// Crear colección y documento para Producto
-db.createCollection('Producto');
-db.Producto.insertMany([
-    {
-        _id: ObjectId("1"),
-        Nombre: "Producto A",
-        Descripción: "Descripción del producto A",
-        Fotos: ["fotoA1.jpg", "fotoA2.jpg"],
-        Comentarios: ["Comentario A1", "Comentario A2"],
-        Videos: ["videoA1.mp4"],
-        Precio: 50.0
-    },
-    {
-        _id: ObjectId("2"),
-        Nombre: "Producto B",
-        Descripción: "Descripción del producto B",
-        Fotos: ["fotoB1.jpg", "fotoB2.jpg"],
-        Comentarios: ["Comentario B1", "Comentario B2"],
-        Videos: ["videoB1.mp4"],
-        Precio: 30.0
-    }
+// Insertar productos y obtener sus IDs
+const productos = db.productos.insertMany([
+  { _id: ObjectId("60c72b2f5f1b2c001a59b8a2"), nombre: "Producto A", stock: 100, precio: 50.0 },
+  { _id: ObjectId("60c72b2f5f1b2c001a59b8a3"), nombre: "Producto B", stock: 50, precio: 25.0 }
 ]);
 
-// Crear colección y documento para Catálogo de Productos
-db.createCollection('Catalogo_de_Productos');
-db.Catalogo_de_Productos.insert({
-    _id: ObjectId(),
-    Productos: [
-        {
-            ID_Producto: "1",
-            Descripciones: "Descripción del producto A",
-            Fotos: ["fotoA1.jpg", "fotoA2.jpg"],
-            Comentarios: ["Comentario A1", "Comentario A2"],
-            Videos: ["videoA1.mp4"]
-        },
-        {
-            ID_Producto: "2",
-            Descripciones: "Descripción del producto B",
-            Fotos: ["fotoB1.jpg", "fotoB2.jpg"],
-            Comentarios: ["Comentario B1", "Comentario B2"],
-            Videos: ["videoB1.mp4"]
-        }
+// Crear colección de carritos
+db.createCollection('carritos', { capped: false });
+
+// Insertar un carrito con los productos creados
+db.carritos.insertMany([
+  {
+    ID_usuario: 1,
+    lista_de_productos: [
+      { ID_producto: ObjectId("60c72b2f5f1b2c001a59b8a2"), nombre: "Producto A", cantidad: 2, precio: 50.0 },
+      { ID_producto: ObjectId("60c72b2f5f1b2c001a59b8a3"), nombre: "Producto B", cantidad: 1, precio: 25.0 }
     ],
-    Historial_Cambios: [
-        { Cambio: "Precio", Valor_Anterior: 50.0, Valor_Nuevo: 45.0, Operador: "Admin", Fecha: new Date("2023-01-01") },
-        { Cambio: "Imagen", Valor_Anterior: "fotoA1.jpg", Valor_Nuevo: "fotoA3.jpg", Operador: "Admin", Fecha: new Date("2023-01-02") }
-    ]
-});
+    estado: "pendiente"
+  }
+]);

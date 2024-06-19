@@ -7,14 +7,6 @@ router.get('/', async (req, res) => {
   res.json(result.rows);
 });
 
-router.post('/', async (req, res) => {
-  const { ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto } = req.body;
-  const result = await pool.query(
-    'INSERT INTO Pago (ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-    [ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto]
-  );
-  res.json(result.rows[0]);
-});
 
 // PUT (Update) Pago
 router.put('/:id', async (req, res) => {
@@ -26,7 +18,19 @@ router.put('/:id', async (req, res) => {
     );
     res.json(result.rows[0]);
   });
-  
+
+// POST Pago
+router.post('/', async (req, res) => {
+  const { ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto } = req.body;
+  const result = await pool.query(
+    'INSERT INTO Pago (ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+    [ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto]
+  );
+  res.json(result.rows[0]);
+});
+
+module.exports = router;
+
 // DELETE Pago
 router.delete('/:id', async (req, res) => {
 const { id } = req.params;
