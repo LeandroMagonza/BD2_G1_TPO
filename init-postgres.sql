@@ -2,9 +2,10 @@
 CREATE TABLE Usuario (
     ID_usuario SERIAL PRIMARY KEY,
     Nombre VARCHAR(50),
-    Dirección VARCHAR(100),
+    Direccion VARCHAR(100),
     Documento_de_identidad VARCHAR(20),
-    Tiempo_de_conexión INT,
+    Contrasenia VARCHAR(100),
+    Tiempo_de_conexion INT,
     Categoría_de_usuario VARCHAR(10)
 );
 
@@ -35,3 +36,21 @@ CREATE TABLE Pago (
     Fecha_y_hora_del_pago TIMESTAMP,
     Monto DECIMAL
 );
+
+-- Insertar datos de prueba
+
+-- Usuarios
+INSERT INTO Usuario (Nombre, Direccion, Documento_de_identidad, Contrasenia, Tiempo_de_conexion, Categoría_de_usuario)
+VALUES ('Juan Perez', 'Calle Falsa 123', '12345678', 'password123', 120, 'MEDIUM');
+
+-- Pedidos
+INSERT INTO Pedido (ID_usuario, Lista_de_productos, Importe_de_artículos, Descuentos, Impuestos, Estado_del_pedido)
+VALUES (1, '[{"ID_Producto": "60c72b2f5f1b2c001a59b8a2", "Cantidad": 2, "Detalles": "Producto A"}, {"ID_Producto": "60c72b2f5f1b2c001a59b8a3", "Cantidad": 1, "Detalles": "Producto B"}]', 100.0, 10.0, 5.0, 'Pendiente');
+
+-- Facturas
+INSERT INTO Factura (ID_pedido, Fecha_de_emisión, Importe_total, Detalles_del_cliente, Detalles_de_pago)
+VALUES (1, '2023-01-01 10:00:00', 95.0, '{"Nombre": "Juan Perez", "Direccion": "Calle Falsa 123"}', '{"Metodo": "Tarjeta de Credito", "Numero": "1234-5678-9012-3456"}');
+
+-- Pagos
+INSERT INTO Pago (ID_factura, Medio_de_pago, Operador_interviniente, Fecha_y_hora_del_pago, Monto)
+VALUES (1, 'Tarjeta de Credito', 'Visa', '2023-01-01 10:05:00', 95.0);

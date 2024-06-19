@@ -1,0 +1,599 @@
+{
+  "info": {
+    "name": "API Endpoints",
+    "_postman_id": "example-id",
+    "description": "Collection of API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "pedidos",
+      "item": [
+        {
+          "name": "Get All Pedidos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_usuario\": \"\",\n  \"Lista_de_productos\": \"\",\n  \"Importe_de_artículos\": \"\",\n  \"Descuentos\": \"\",\n  \"Impuestos\": \"\",\n  \"Estado_del_pedido\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Pedido",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_usuario\": \"\",\n  \"Lista_de_productos\": \"\",\n  \"Importe_de_artículos\": \"\",\n  \"Descuentos\": \"\",\n  \"Impuestos\": \"\",\n  \"Estado_del_pedido\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/pedidos/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "pedidos",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Pedido",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/pedidos/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "pedidos",
+                ":id"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "productos",
+      "item": [
+        {
+          "name": "Get All Productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos"]
+            }
+          }
+        },
+        {
+          "name": "Create productos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"\",\n  \"descripcion\": \"\",\n  \"precio\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos"]
+            }
+          }
+        },
+        {
+          "name": "Update productos",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"\",\n  \"descripcion\": \"\",\n  \"precio\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/productos/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete productos",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/productos/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos", ":id"]
+            }
+          }
+        }
+      ]
+    }
+    ,
+    {
+      "name": "sesions",
+      "item": [
+        {
+          "name": "Get Sesion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/sesions/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["sesions", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Update Sesion",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_time\": \"\",\n  \"end_time\": \"\",\n  \"activity\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/sesions/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["sesions", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Sesion",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/sesions/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["sesions", ":id"]
+            }
+          }
+        }
+      ]
+    }
+    ,
+    {
+      "name": "usuarios",
+      "item": [
+        {
+          "name": "Get All Usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Create Usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Nombre\": \"\",\n  \"Direccion\": \"\",\n  \"Documento_de_identidad\": \"\",\n  \"Contrasenia\": \"\",\n  \"Tiempo_de_conexion\": \"\",\n  \"Categoría_de_usuario\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["usuarios"]
+            }
+          }
+        },
+        {
+          "name": "Update Usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Nombre\": \"\",\n  \"Direccion\": \"\",\n  \"Documento_de_identidad\": \"\",\n  \"Contrasenia\": \"\",\n  \"Tiempo_de_conexion\": \"\",\n  \"Categoría_de_usuario\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/usuarios/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["usuarios", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/usuarios/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["usuarios", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Login Usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Documento_de_identidad\": \"\",\n  \"Contrasenia\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/usuarios/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["usuarios", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "carritos",
+      "item": [
+        {
+          "name": "Create carritos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_usuario\": \"\",\n  \"lista_de_productos\": [],\n  \"estado\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/carritos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carritos"]
+            }
+          }
+        },
+        {
+          "name": "Get carritos by ID Usuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/carritos/:ID_usuario",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carritos", ":ID_usuario"]
+            }
+          }
+        },
+        {
+          "name": "Delete carritos by ID Usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/carritos/:ID_usuario",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carritos", ":ID_usuario"]
+            }
+          }
+        },
+        {
+          "name": "Delete Producto from carritos",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/carritos/:ID_usuario/productos/:ID_producto",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carritos", ":ID_usuario", "productos", ":ID_producto"]
+            }
+          }
+        },
+        {
+          "name": "Add Producto to carritos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_producto\": \"\",\n  \"nombre\": \"\",\n  \"cantidad\": 0,\n  \"precio\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/carritos/:ID_usuario/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["carritos", ":ID_usuario", "productos"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "facturas",
+      "item": [
+        {
+          "name": "Get All Facturas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/facturas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["facturas"]
+            }
+          }
+        },
+        {
+          "name": "Create Factura",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_pedido\": \"\",\n  \"Fecha_de_emisión\": \"\",\n  \"Importe_total\": 0,\n  \"Detalles_del_cliente\": \"\",\n  \"Detalles_de_pago\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/facturas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["facturas"]
+            }
+          }
+        },
+        {
+          "name": "Update Factura",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_pedido\": \"\",\n  \"Fecha_de_emisión\": \"\",\n  \"Importe_total\": 0,\n  \"Detalles_del_cliente\": \"\",\n  \"Detalles_de_pago\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/facturas/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["facturas", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Factura",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/facturas/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["facturas", ":id"]
+            }
+          }
+        }
+      ]
+    }
+    ,
+    {
+      "name": "pagos",
+      "item": [
+        {
+          "name": "Get All Pagos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/pagos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pagos"]
+            }
+          }
+        },
+        {
+          "name": "Create Pago",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_factura\": \"\",\n  \"Medio_de_pago\": \"\",\n  \"Operador_interviniente\": \"\",\n  \"Fecha_y_hora_del_pago\": \"\",\n  \"Monto\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/pagos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pagos"]
+            }
+          }
+        },
+        {
+          "name": "Update Pago",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ID_factura\": \"\",\n  \"Medio_de_pago\": \"\",\n  \"Operador_interviniente\": \"\",\n  \"Fecha_y_hora_del_pago\": \"\",\n  \"Monto\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/pagos/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pagos", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Delete Pago",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/pagos/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pagos", ":id"]
+            }
+          }
+        }
+      ]
+    }
+    
+  ]
+}

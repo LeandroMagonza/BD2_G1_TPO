@@ -1,47 +1,36 @@
-// Inicializar MongoDB con las colecciones y documentos requeridos
-
-// Conectar a la base de datos
-db = db.getSiblingDB('tienda_online');
-
-// Crear colección y documento para Carrito de Compras
-db.createCollection('Carrito_de_Compras');
-db.Carrito_de_Compras.insert({
-    _id: ObjectId(),
-    ID_Usuario: "12345",
-    Productos: [
-        { ID_Producto: "1", Cantidad: 2, Detalles: "..." },
-        { ID_Producto: "2", Cantidad: 1, Detalles: "..." }
-    ],
-    Estado: "Pendiente"
-});
-
-// Crear colección y documento para Producto
-db.createCollection('Producto');
-db.Producto.insert({
-    _id: ObjectId(),
-    Nombre: "Producto1",
-    Descripción: "Descripción del producto",
-    Fotos: ["foto1.jpg", "foto2.jpg"],
-    Comentarios: ["Comentario1", "Comentario2"],
-    Videos: ["video1.mp4"],
-    Precio: 100.0
-});
-
-// Crear colección y documento para Catálogo de Productos
-db.createCollection('Catalogo_de_Productos');
-db.Catalogo_de_Productos.insert({
-    _id: ObjectId(),
-    Productos: [
-        {
-            ID_Producto: "1",
-            Descripciones: "Descripción del producto",
-            Fotos: ["foto1.jpg", "foto2.jpg"],
-            Comentarios: ["Comentario1", "Comentario2"],
-            Videos: ["video1.mp4"]
-        }
-    ],
-    Historial_Cambios: [
-        { Cambio: "Precio", Valor_Anterior: 100.0, Valor_Nuevo: 90.0, Operador: "Admin", Fecha: new Date("2023-01-01") },
-        { Cambio: "Imagen", Valor_Anterior: "foto1.jpg", Valor_Nuevo: "foto3.jpg", Operador: "Admin", Fecha: new Date("2023-01-02") }
+db.createUser({
+    user: 'admin',
+    pwd: 'password',
+    roles: [
+      {
+        role: 'readWrite',
+        db: 'tiendaonline'
+      }
     ]
-});
+  });
+  
+db = db.getSiblingDB('tiendaonline');
+
+// Crear colección de productos
+db.createCollection('productos', { capped: false });
+
+// Insertar productos y obtener sus IDs
+const productos = db.productos.insertMany([
+  { _id: ObjectId("60c72b2f5f1b2c001a59b8a2"), nombre: "Producto A", stock: 100, precio: 50.0 },
+  { _id: ObjectId("60c72b2f5f1b2c001a59b8a3"), nombre: "Producto B", stock: 50, precio: 25.0 }
+]);
+
+// Crear colección de carritos
+db.createCollection('carritos', { capped: false });
+
+// Insertar un carrito con los productos creados
+db.carritos.insertMany([
+  {
+    ID_usuario: 1,
+    lista_de_productos: [
+      { ID_producto: ObjectId("60c72b2f5f1b2c001a59b8a2"), nombre: "Producto A", cantidad: 2, precio: 50.0 },
+      { ID_producto: ObjectId("60c72b2f5f1b2c001a59b8a3"), nombre: "Producto B", cantidad: 1, precio: 25.0 }
+    ],
+    estado: "pendiente"
+  }
+]);

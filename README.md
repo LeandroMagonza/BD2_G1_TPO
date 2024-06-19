@@ -47,7 +47,7 @@ Antes de comenzar, asegúrate de tener Docker y Docker Compose instalados en tu 
 
    Este comando descargará las imágenes de Docker para PostgreSQL, MongoDB y Redis, creará y configurará los contenedores, y ejecutará los scripts de inicialización para configurar las bases de datos con las estructuras y datos requeridos.
 
-2. **Verifica la conexión**:
+2. **Verifica la conexion**:
    - **PostgreSQL**: Usa pgAdmin para conectarte a PostgreSQL. Configura un nuevo servidor en pgAdmin con los siguientes detalles:
      - **Host name/address:** `localhost`
      - **Port:** `5432`
@@ -64,7 +64,6 @@ Antes de comenzar, asegúrate de tener Docker y Docker Compose instalados en tu 
      show collections
      db.Carrito_de_Compras.find().pretty()
      db.Producto.find().pretty()
-     db.Catalogo_de_Productos.find().pretty()
      ```
 
    - **Redis**: Usa `redis-cli` para conectarte a Redis:
